@@ -1,12 +1,6 @@
-﻿using CrossPlatform.Demo.ContentViews;
-using CrossPlatform.Demo.Services;
+﻿using CrossPlatform.Demo.Services;
 using Plugin.LocalNotifications;
-using Plugin.Messaging;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
