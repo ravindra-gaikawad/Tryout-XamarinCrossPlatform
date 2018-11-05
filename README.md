@@ -5,3 +5,4 @@
 * https://dzone.com/articles/xamarinforms-custom-popup
 * https://github.com/edsnider/LocalNotificationsPlugin
 * https://github.com/wcoder/PeriodicBackgroundService
+* https://github.com/aritchie/geofences

@@ -5,6 +5,9 @@ using Android.App;
 using Android.Content;
 using Android.Util;
 using Plugin.LocalNotifications;
+using Plugin.Geofencing;
+using Android.Telephony;
+using System.Collections.Generic;
 
 namespace CrossPlatform.Demo.Droid
 {
@@ -60,8 +63,7 @@ namespace CrossPlatform.Demo.Droid
                 Log.WriteLine(LogPriority.Info, Tag, "Started!");
 
                 // Do something...
-                CrossLocalNotifications.Current.Show("Invoked At", $"{DateTime.Now}");
-
+                CrossLocalNotifications.Current.Show("Invoked at", $"{DateTime.Now}", (int)(DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds);
             }
             catch (Exception e)
             {

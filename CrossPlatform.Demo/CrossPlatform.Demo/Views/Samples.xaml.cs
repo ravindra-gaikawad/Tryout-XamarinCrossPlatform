@@ -1,6 +1,8 @@
 ﻿using CrossPlatform.Demo.Services;
+using Plugin.Geofencing;
 using Plugin.LocalNotifications;
 using System;
+using System.Collections.Generic;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -92,5 +94,49 @@ namespace CrossPlatform.Demo.Views
         {
             CrossLocalNotifications.Current.Show("title", "body");
         }
+
+        private void BtnGeofence_Clicked(object sender, EventArgs e)
+        {
+            GeofenceRegion geofenceRegion4Mobiliya = new GeofenceRegion("Office", new Position(18.556696, 73.793168), Distance.FromMeters(50));
+            CrossGeofences.Current.StartMonitoring(geofenceRegion4Mobiliya);
+
+            GeofenceRegion geofenceRegion4University = new GeofenceRegion("University", new Position(18.542156, 73.828755), Distance.FromMeters(100));
+            CrossGeofences.Current.StartMonitoring(geofenceRegion4University);
+
+            GeofenceRegion geofenceRegion4Deccan = new GeofenceRegion("Deccan", new Position(18.519159, 73.830352), Distance.FromMeters(100));
+            CrossGeofences.Current.StartMonitoring(geofenceRegion4Deccan);
+
+            GeofenceRegion geofenceRegion4Swargate = new GeofenceRegion("Swargate", new Position(18.496684, 73.857776), Distance.FromMeters(250));
+            CrossGeofences.Current.StartMonitoring(geofenceRegion4Swargate);
+
+            GeofenceRegion geofenceRegion4Balajinagar = new GeofenceRegion("Home", new Position(18.465645, 73.858136), Distance.FromMeters(150));
+            CrossGeofences.Current.StartMonitoring(geofenceRegion4Balajinagar);
+
+            CrossGeofences.Current.RegionStatusChanged += OnRegionStatusChanged;
+
+            DependencyService.Get<IServices>().Toast("Geofencing enabled...");
+        }
+
+        private void OnRegionStatusChanged(object sender, GeofenceStatusChangedEventArgs e)
+        {
+            try
+            {       
+                var terminals = new List<string> { "Office", "Home" };
+
+                if (terminals.Contains(e.Region.ToString()))
+                {
+                    CrossLocalNotifications.Current.Show("You are at", $"{e.Region.ToString()}", (int)(DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds);
+                }
+                else if (terminals.Contains(e.Region.ToString()) == false && e.Status == GeofenceStatus.Entered)
+                {
+                    CrossLocalNotifications.Current.Show("You are at", $"{e.Region.ToString()}", (int)(DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds);
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
     }
 }
