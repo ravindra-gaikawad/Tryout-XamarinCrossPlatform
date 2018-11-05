@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CrossPlatform.Demo.Views.Samples">
+   
+    <ContentPage.Content>
+        <AbsoluteLayout HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout>
+                <Button Text="Location"
+                    Margin="8,0,8,0"
+                    Clicked="BtnLocation_Clicked"/>
+                <Button Text="Toast Notification" 
+                    Margin="8,0,8,0"
+                    Clicked="BtnToast_Clicked"/>
+                <Button Text="Send SMS" 
+                    Margin="8,0,8,0"
+                    Clicked="BtnSms_Clicked"/>
+            </StackLayout>
+            
+            <ContentView x:Name="popupSendSms" Padding="4" IsVisible="false" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+
+                    <StackLayout Orientation="Vertical" HeightRequest="200" WidthRequest="300" BackgroundColor="White">
+
+                        <Entry x:Name="Receipient" MaxLength="10" Margin="20,20,20,10" Placeholder="Mobile No"></Entry>
+
+                        <Entry x:Name="Message" Margin="20,0,20,0" Placeholder="Message"></Entry>
+
+                        <Button Margin="20,0,20,0" Text="Send" BackgroundColor="LightBlue" Clicked="BtnSend_Clicked"></Button>
+
+                    </StackLayout>
+
+                </StackLayout>
+
+            </ContentView>
+            
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>
