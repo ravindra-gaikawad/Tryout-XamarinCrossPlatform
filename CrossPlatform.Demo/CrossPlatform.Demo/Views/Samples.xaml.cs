@@ -1,5 +1,6 @@
 ﻿using CrossPlatform.Demo.ContentViews;
 using CrossPlatform.Demo.Services;
+using Plugin.LocalNotifications;
 using Plugin.Messaging;
 using System;
 using System.Collections.Generic;
@@ -91,6 +92,11 @@ namespace CrossPlatform.Demo.Views
             {
                 DependencyService.Get<IServices>().Toast("Message not sent");
             }
+        }
+
+        private void BtnNotify_Clicked(object sender, EventArgs e)
+        {
+            CrossLocalNotifications.Current.Show("title", "body");
         }
     }
 }

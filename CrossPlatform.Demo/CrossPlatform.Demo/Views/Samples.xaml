@@ -15,6 +15,9 @@
                 <Button Text="Send SMS" 
                     Margin="8,0,8,0"
                     Clicked="BtnSms_Clicked"/>
+                <Button Text="Notify" 
+                    Margin="8,0,8,0"
+                    Clicked="BtnNotify_Clicked"/>
             </StackLayout>
             
             <ContentView x:Name="popupSendSms" Padding="4" IsVisible="false" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
