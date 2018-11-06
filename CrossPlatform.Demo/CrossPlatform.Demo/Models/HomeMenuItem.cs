@@ -8,6 +8,7 @@ namespace CrossPlatform.Demo.Models
     {
         Browse,
         Samples,
+        Cards,
         About
     }
     public class HomeMenuItem

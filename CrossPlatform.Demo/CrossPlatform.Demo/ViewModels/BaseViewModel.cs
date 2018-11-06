@@ -13,6 +13,7 @@ namespace CrossPlatform.Demo.ViewModels
     public class BaseViewModel : INotifyPropertyChanged
     {
         public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>() ?? new MockDataStore();
+        public IDataStore<Card> CardDataStore => DependencyService.Get<IDataStore<Card>>() ?? new CardDataStore();
 
         bool isBusy = false;
         public bool IsBusy

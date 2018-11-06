@@ -20,6 +20,7 @@ namespace CrossPlatform.Demo.Views
             {
                 new HomeMenuItem {Id = MenuItemType.Browse, Title="Browse" },
                 new HomeMenuItem {Id = MenuItemType.Samples, Title="Samples" },
+                new HomeMenuItem {Id = MenuItemType.Cards, Title="Cards" },
                 new HomeMenuItem {Id = MenuItemType.About, Title="About" }
             };
 

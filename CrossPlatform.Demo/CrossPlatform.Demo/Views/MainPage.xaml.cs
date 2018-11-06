@@ -32,6 +32,9 @@ namespace CrossPlatform.Demo.Views
                     case (int)MenuItemType.Samples:
                         MenuPages.Add(id, new NavigationPage(new Samples()));
                         break;
+                    case (int)MenuItemType.Cards:
+                        MenuPages.Add(id, new NavigationPage(new CardsPage()));
+                        break;
                     case (int)MenuItemType.About:
                         MenuPages.Add(id, new NavigationPage(new AboutPage()));
                         break;
