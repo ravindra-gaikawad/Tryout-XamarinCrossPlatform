@@ -27,29 +27,6 @@ namespace CrossPlatform.Demo.Droid
             LoadApplication(new App());
 
             SetAlarmForBackgroundServices(this);
-
-            CrossGeofences.Current.RegionStatusChanged += OnRegionStatusChanged;
-        }
-
-        private void OnRegionStatusChanged(object sender, GeofenceStatusChangedEventArgs e)
-        {
-            try
-            {
-                var terminals = new List<string> { "Office", "Home" };
-
-                if (terminals.Contains(e.Region.ToString()))
-                {
-                    SmsManager.Default.SendTextMessage("<Mobile No>", null, $"Hi Gochu!!!\nRavindra is at {e.Region}", null, null);
-                }
-                else if (terminals.Contains(e.Region.ToString()) == false && e.Status == GeofenceStatus.Entered)
-                {
-                    SmsManager.Default.SendTextMessage("<Mobile No>", null, $"Hi Gochu!!!\nRavindra is at {e.Region}", null, null);
-                }
-            }
-            catch
-            {
-
-            }
         }
 
         public static void SetAlarmForBackgroundServices(Context context)
@@ -60,7 +37,7 @@ namespace CrossPlatform.Demo.Droid
             {
                 var pendingIntent = PendingIntent.GetBroadcast(context.ApplicationContext, 0, alarmIntent, 0);
                 var alarmManager = (AlarmManager)context.GetSystemService(Context.AlarmService);
-                alarmManager.SetRepeating(AlarmType.ElapsedRealtimeWakeup, SystemClock.ElapsedRealtime(), 1200000, pendingIntent);
+                alarmManager.SetRepeating(AlarmType.ElapsedRealtimeWakeup, SystemClock.ElapsedRealtime(), 3600000, pendingIntent);
             }
         }
     }

@@ -9,5 +9,7 @@ namespace CrossPlatform.Demo.Services
         void Toast(string message);
 
         bool SendSms(string message, string receipient);
+
+        bool EnableGeofencing();
     }
 }

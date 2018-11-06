@@ -53,5 +53,10 @@ namespace CrossPlatform.Demo.UWP
 
             ToastNotificationManager.CreateToastNotifier().Show(toast);
         }
+
+        bool IServices.EnableGeofencing()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

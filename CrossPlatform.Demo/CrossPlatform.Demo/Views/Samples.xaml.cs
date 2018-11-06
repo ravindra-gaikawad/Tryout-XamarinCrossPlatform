@@ -20,7 +20,9 @@ namespace CrossPlatform.Demo.Views
 
         private async void BtnLocation_Clicked(object sender, EventArgs e)
         {
+            ((Button)sender).IsEnabled = false;
             await ShowLocation();
+            ((Button)sender).IsEnabled = true;
         }
 
         private void BtnToast_Clicked(object sender, EventArgs e)
@@ -66,6 +68,8 @@ namespace CrossPlatform.Demo.Views
 
         private void BtnSend_Clicked(object sender, EventArgs e)
         {
+            ((Button)sender).IsEnabled = false;
+
             if (string.IsNullOrEmpty(this.Message.Text))
             {
                 DependencyService.Get<IServices>().Toast("Write message");
@@ -88,55 +92,23 @@ namespace CrossPlatform.Demo.Views
             {
                 DependencyService.Get<IServices>().Toast("Message not sent");
             }
+
+            ((Button)sender).IsEnabled = true;
         }
 
         private void BtnNotify_Clicked(object sender, EventArgs e)
         {
+            ((Button)sender).IsEnabled = false;
             CrossLocalNotifications.Current.Show("title", "body");
+            ((Button)sender).IsEnabled = true;
         }
 
         private void BtnGeofence_Clicked(object sender, EventArgs e)
         {
-            GeofenceRegion geofenceRegion4Mobiliya = new GeofenceRegion("Office", new Position(18.556696, 73.793168), Distance.FromMeters(50));
-            CrossGeofences.Current.StartMonitoring(geofenceRegion4Mobiliya);
-
-            GeofenceRegion geofenceRegion4University = new GeofenceRegion("University", new Position(18.542156, 73.828755), Distance.FromMeters(100));
-            CrossGeofences.Current.StartMonitoring(geofenceRegion4University);
-
-            GeofenceRegion geofenceRegion4Deccan = new GeofenceRegion("Deccan", new Position(18.519159, 73.830352), Distance.FromMeters(100));
-            CrossGeofences.Current.StartMonitoring(geofenceRegion4Deccan);
-
-            GeofenceRegion geofenceRegion4Swargate = new GeofenceRegion("Swargate", new Position(18.496684, 73.857776), Distance.FromMeters(250));
-            CrossGeofences.Current.StartMonitoring(geofenceRegion4Swargate);
-
-            GeofenceRegion geofenceRegion4Balajinagar = new GeofenceRegion("Home", new Position(18.465645, 73.858136), Distance.FromMeters(150));
-            CrossGeofences.Current.StartMonitoring(geofenceRegion4Balajinagar);
-
-            CrossGeofences.Current.RegionStatusChanged += OnRegionStatusChanged;
-
+            ((Button)sender).IsEnabled = false;
+            DependencyService.Get<IServices>().EnableGeofencing();
             DependencyService.Get<IServices>().Toast("Geofencing enabled...");
+            ((Button)sender).IsEnabled = true;
         }
-
-        private void OnRegionStatusChanged(object sender, GeofenceStatusChangedEventArgs e)
-        {
-            try
-            {       
-                var terminals = new List<string> { "Office", "Home" };
-
-                if (terminals.Contains(e.Region.ToString()))
-                {
-                    CrossLocalNotifications.Current.Show("You are at", $"{e.Region.ToString()}", (int)(DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds);
-                }
-                else if (terminals.Contains(e.Region.ToString()) == false && e.Status == GeofenceStatus.Entered)
-                {
-                    CrossLocalNotifications.Current.Show("You are at", $"{e.Region.ToString()}", (int)(DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds);
-                }
-            }
-            catch
-            {
-
-            }
-        }
-
     }
 }

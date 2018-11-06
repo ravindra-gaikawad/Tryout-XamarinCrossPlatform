@@ -49,5 +49,10 @@ namespace CrossPlatform.Demo.iOS
         {
             throw new NotImplementedException();
         }
+
+        bool IServices.EnableGeofencing()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
